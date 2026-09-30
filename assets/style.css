@@ -54,8 +54,38 @@ a{text-decoration:none;color:inherit}
 .fake-cover.red{background:radial-gradient(circle at 50% 40%,#ff5137,#7b1014 72%)}.fake-cover.blue{background:radial-gradient(circle at 50% 40%,#3b79e6,#0a1a43 70%)}
 .speed-line{position:absolute;height:2px;background:var(--red);opacity:.8}.line1{width:190px;right:0;top:145px;transform:rotate(-10deg)}.line2{width:240px;left:0;bottom:140px;transform:rotate(14deg)}.line3{width:130px;right:0;bottom:205px;transform:rotate(8deg)}
 .quick-categories{background:#fff;border-bottom:1px solid var(--line);padding:55px 0}
-.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.category-card{min-height:155px;padding:25px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;position:relative;overflow:hidden}
+.category-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:70px;
+  margin:10px 0 18px;
+}
+
+.category-logo img{
+  display:block;
+  max-width:190px;
+  max-height:65px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+.category-logo-dc img{
+  max-width:85px;
+  max-height:85px;
+}
+
+.category-logo-image img{
+  max-width:190px;
+  max-height:65px;
+}
+
+.category-logo-marvel img{
+  max-width:190px;
+  max-height:65px;
+}
 .category-card:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 35%,rgba(0,0,0,.4))}
 .category-card>*{position:relative;z-index:1}.category-card strong{font-family:"Bebas Neue";font-size:65px;line-height:.8}.cat-small{font-size:10px;letter-spacing:.16em;font-weight:900}.cat-arrow{font-size:22px;align-self:flex-end}.marvel{background:linear-gradient(135deg,#ed2d22,#7d0e18)}.dc{background:linear-gradient(135deg,#2d6fd1,#0c275e)}.image{background:linear-gradient(135deg,#3b3e45,#101116)}.other{background:linear-gradient(135deg,#8d6a35,#302415)}
 .section{padding:92px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:32px}.section-heading.compact{margin-bottom:25px}.section-heading h2,.about h2,.contact-section h2{font-family:"Bebas Neue";font-size:58px;line-height:.9;margin:0;letter-spacing:.015em}.text-link{font-size:12px;font-weight:900;text-transform:uppercase}.comic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.comic-grid.large{grid-template-columns:repeat(4,1fr)}
