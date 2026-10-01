@@ -8,111 +8,105 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
-
   <style>
-    /* Custom updates */
-    .category-logo{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      line-height:1;
-      font-weight:900;
-      letter-spacing:-0.04em;
-      text-transform:uppercase;
-      margin-top:8px;
-    }
-    .category-logo-marvel{
-      min-width:150px;
-      min-height:54px;
-      padding:0 12px;
-      background:#e31b23;
-      color:#fff;
-      font-family:Arial,Helvetica,sans-serif;
-      font-size:32px;
-      font-style:italic;
-      transform:skewX(-6deg);
-      box-shadow:6px 6px 0 rgba(0,0,0,.25);
-    }
-    .category-logo-marvel::after{
-      content:"";
-      position:absolute;
-      inset:4px;
-      border:2px solid rgba(255,255,255,.8);
-      pointer-events:none;
-    }
-    .category-logo-dc{
-      width:76px;
-      height:76px;
-      border-radius:50%;
-      border:4px solid #fff;
-      background:#111;
-      color:#fff;
-      font-family:Arial,Helvetica,sans-serif;
-      font-size:30px;
-      letter-spacing:-0.08em;
-      box-shadow:0 0 0 5px rgba(255,255,255,.12);
-    }
-    .category-logo-image{
-      min-width:155px;
-      min-height:54px;
-      padding:0 12px;
-      background:#111;
-      color:#fff;
-      font-family:Arial,Helvetica,sans-serif;
-      font-size:31px;
-      letter-spacing:-0.06em;
-      border:3px solid #fff;
-      box-shadow:6px 6px 0 rgba(0,0,0,.25);
-    }
-    .contact-button{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .contact-button > span:last-child{
-      margin-left:auto;
-    }
-    .platform-logo{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:34px;
-      height:34px;
-      min-width:34px;
-      border-radius:9px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.2);
-      color:#fff;
-      font-weight:900;
-      font-size:14px;
-      line-height:1;
-    }
-    .contact-button.facebook .platform-logo{
-      border-radius:50%;
-      font-family:Arial,Helvetica,sans-serif;
-      font-size:22px;
-    }
-    .contact-button.email .platform-logo{
-      font-size:18px;
-    }
-    .lot-detail{
-      border:1px solid rgba(225,0,0,.35);
-      background:rgba(225,0,0,.06);
-      padding:10px 12px;
-      border-radius:8px;
-    }
-    .lot-value{
-      font-weight:900;
-      color:#e21d2f;
-      letter-spacing:.04em;
-    }
-    @media (max-width:700px){
-      .category-logo-marvel,.category-logo-image{min-width:125px;font-size:26px}
-      .category-logo-dc{width:64px;height:64px;font-size:25px}
-    }
-  </style>
+:root{
+  --black:#090a0d; --ink:#111319; --red:#ef2b20; --red2:#b80f16;
+  --yellow:#ffd21c; --blue:#1265c9; --paper:#f5f2eb; --white:#fff;
+  --muted:#6b6d73; --line:#d9d7d1; --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),calc(100% - 42px));margin:auto}
+.comic-stripe{height:6px;background:linear-gradient(90deg,var(--red) 0 33%,var(--yellow) 33% 66%,var(--blue) 66%)}
+.header{position:sticky;top:0;z-index:50;background:rgba(9,10,13,.96);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.logo-link{display:flex;align-items:center;height:78px;position:relative;z-index:3}.logo-link img{width:190px;height:auto;display:block;transform:translateY(20px)}
+.main-nav{display:flex;align-items:center;gap:24px;color:#fff;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.main-nav>a{opacity:.9}.main-nav>a:hover{color:var(--yellow)}
+.social-link{border-left:1px solid #36383e;padding-left:24px}
+.language-switch{display:flex;align-items:center;gap:6px;color:#777}
+.lang{border:0;background:none;color:#777;font-weight:900;cursor:pointer;padding:4px}
+.lang.active{color:var(--yellow)}
+.menu-toggle{display:none;color:#fff;background:none;border:0;font-size:28px}
+.hero{position:relative;overflow:hidden;background:var(--black);color:#fff;min-height:650px}
+.hero-halftone{position:absolute;inset:0;opacity:.13;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:8px 8px;mask-image:linear-gradient(90deg,transparent,black 35%,black 70%,transparent)}
+.hero-grid{min-height:650px;display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:20px;position:relative}
+.hero-copy{position:relative;padding:50px 0}
+.kicker,.section-label{font-size:11px;letter-spacing:.2em;font-weight:900;color:var(--red);margin-bottom:12px}
+.hero h1{font-family:"Bebas Neue",Impact,sans-serif;font-size:clamp(56px,7.2vw,94px);line-height:.88;letter-spacing:.015em;margin:0 0 24px}
+.hero h1 span{color:var(--yellow);-webkit-text-stroke:1px rgba(0,0,0,.2)}
+.hero-copy>p:not(.kicker){max-width:560px;color:#bfc1c7;font-size:16px;line-height:1.7}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{padding:14px 20px;font-size:12px;font-weight:900;letter-spacing:.06em;display:inline-block}
+.btn-red{background:var(--red);color:#fff;box-shadow:5px 5px 0 var(--yellow)}
+.btn-red:hover{transform:translate(-1px,-1px)}
+.btn-outline{border:1px solid #5a5c62;color:#fff}.btn-outline:hover{border-color:#fff}
+.hero-visual{height:540px;position:relative}
+.fake-slab{position:absolute;width:275px;height:auto;border:0;background:none;box-shadow:none;padding:0;border-radius:4px}
+.slab-back{left:8%;top:80px;transform:rotate(-12deg)}
+.slab-front{right:8%;top:75px;transform:rotate(7deg);z-index:2}
+.real-slab{
+  position:absolute;
+  width:275px;
+  height:410px;
+  object-fit:fill;
+  display:block;
+  box-shadow:20px 25px 50px rgba(0,0,0,.45);
+  border-radius:4px;
+}
+.real-slab.slab-back{left:8%;top:80px;transform:rotate(-12deg)}
+.real-slab.slab-front{right:8%;top:75px;transform:rotate(7deg);z-index:2}
+.grade{height:43px;background:#f8fbff;color:#111;font-weight:900;font-size:25px;display:flex;align-items:center;padding-left:12px;border:2px solid #8b9aa6;margin-bottom:9px}
+.fake-cover{height:327px;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;color:#fff;font-family:"Bebas Neue";font-size:19px;overflow:hidden;position:relative}
+.fake-cover:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(125deg,transparent 0 16px,rgba(255,255,255,.06) 17px 19px)}
+.fake-cover strong{font-size:56px;line-height:.8;position:relative}
+.fake-cover.red{background:radial-gradient(circle at 50% 40%,#ff5137,#7b1014 72%)}.fake-cover.blue{background:radial-gradient(circle at 50% 40%,#3b79e6,#0a1a43 70%)}
+.speed-line{position:absolute;height:2px;background:var(--red);opacity:.8}.line1{width:190px;right:0;top:145px;transform:rotate(-10deg)}.line2{width:240px;left:0;bottom:140px;transform:rotate(14deg)}.line3{width:130px;right:0;bottom:205px;transform:rotate(8deg)}
+.quick-categories{background:#fff;border-bottom:1px solid var(--line);padding:55px 0}
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.category-card{min-height:155px;padding:25px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;position:relative;overflow:hidden}
+.category-card:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 35%,rgba(0,0,0,.4))}
+.category-card>*{position:relative;z-index:1}.category-card strong{font-family:"Bebas Neue";font-size:65px;line-height:.8}.cat-small{font-size:10px;letter-spacing:.16em;font-weight:900}.cat-arrow{font-size:22px;align-self:flex-end}.marvel{background:linear-gradient(135deg,#ed2d22,#7d0e18)}.dc{background:linear-gradient(135deg,#2d6fd1,#0c275e)}.image{background:linear-gradient(135deg,#3b3e45,#101116)}.other{background:linear-gradient(135deg,#8d6a35,#302415)}
+.section{padding:92px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:32px}.section-heading.compact{margin-bottom:25px}.section-heading h2,.about h2,.contact-section h2{font-family:"Bebas Neue";font-size:58px;line-height:.9;margin:0;letter-spacing:.015em}.text-link{font-size:12px;font-weight:900;text-transform:uppercase}.comic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.comic-grid.large{grid-template-columns:repeat(4,1fr)}
+.comic-card-item{cursor:pointer}.cover{height:365px;position:relative;overflow:hidden;box-shadow:0 12px 25px rgba(0,0,0,.12);background:#222}
+.cover img{width:100%;height:100%;object-fit:fill;display:block}.placeholder-cover{height:100%;padding:18px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.placeholder-cover:after{content:"";position:absolute;inset:-30%;background:repeating-linear-gradient(125deg,transparent 0 26px,rgba(255,255,255,.07) 27px 30px);transform:rotate(8deg)}.placeholder-cover>*{position:relative;z-index:1}.cover-publisher{font-size:10px;letter-spacing:.14em;font-weight:900}.cover-title{font-family:"Bebas Neue";font-size:51px;line-height:.82;max-width:90%}.cover-grade{font-size:11px;letter-spacing:.18em;font-weight:900}.comic-meta{padding:13px 2px}.comic-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}.comic-badge{display:inline-flex;align-items:center;justify-content:center;min-height:22px;padding:4px 7px;border:1px solid var(--line);font-size:8px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;line-height:1}.publisher-badge{background:var(--black);color:#fff;border-color:var(--black)}.type-badge{background:#fff;color:var(--red);border-color:var(--red)}.grade-badge{background:var(--yellow);color:var(--black);border-color:var(--yellow)}.comic-meta h3{font-size:18px;margin:5px 0 2px}.comic-meta p{font-size:11px;color:var(--muted);margin:0}.card-arrow{font-size:11px;font-weight:900;display:block;margin-top:10px}.split-section{background:#e7e4dc}.split-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}.split-card{background:#fff;display:grid;grid-template-columns:1fr 1fr;min-height:280px;box-shadow:0 8px 20px rgba(0,0,0,.06)}.split-art{color:#fff;padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.modern .split-art{background:linear-gradient(145deg,#df3128,#131722)}.vintage .split-art{background:linear-gradient(145deg,#b58a49,#3b2919)}.split-art span{font-size:10px;letter-spacing:.15em;font-weight:900}.split-art b{font-family:"Bebas Neue";font-size:47px;line-height:.8}.split-info{padding:30px;display:flex;flex-direction:column;justify-content:center}.split-info>span{font-size:10px;font-weight:900;letter-spacing:.15em;color:var(--red)}.split-info h3{font-family:"Bebas Neue";font-size:34px;line-height:.95;margin:10px 0}.arrow{font-size:20px;font-weight:900}
+.catalog-section{background:#fff}.catalog-controls input{border:1px solid var(--line);padding:12px 14px;width:250px;background:#fafafa;font:inherit;font-size:12px;outline:none}.catalog-controls input:focus{border-color:var(--ink)}.catalog-tabs{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:30px}.category-filter-group{display:flex;flex-direction:column;gap:6px}.sub-tabs{display:flex;gap:6px}.tab{border:1px solid var(--line);background:#fff;padding:9px 13px;font-size:10px;font-weight:900;text-transform:uppercase;cursor:pointer}.main-tab{min-width:76px}.sub-tab{font-size:9px;padding:7px 10px;color:#666}.tab.active,.tab:hover{background:var(--ink);color:#fff;border-color:var(--ink)}.empty-state{text-align:center;padding:50px;color:var(--muted)}
+.about{background:#f0ede5}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}.about p{font-size:17px;line-height:1.75;max-width:600px;margin:0 0 18px}.muted{color:var(--muted)!important;font-size:13px!important}
+.contact-section{background:var(--black);color:#fff;padding:125px 0 45px}.light-label{color:var(--yellow)}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.contact-section h2{font-size:clamp(68px,6vw,88px);max-width:720px}.contact-section p{color:#aaa;font-size:18px;line-height:1.65;max-width:560px}.contact-buttons{display:grid;grid-template-columns:1fr 1fr;gap:14px}.contact-button{padding:25px 22px;min-height:72px;border:1px solid #373940;font-size:13px;font-weight:900;display:flex;justify-content:space-between;transition:.2s}.contact-button:hover{transform:translateY(-2px)}.whatsapp:hover{border-color:#25d366}.email:hover{border-color:var(--yellow)}.instagram:hover{border-color:#d6249f}.facebook:hover{border-color:#1877f2}.tiktok:hover{border-color:#fff}.contact-bottom{border-top:1px solid #2a2c31;margin-top:70px;padding-top:22px;display:flex;justify-content:space-between;color:#aaa;font-size:13px;letter-spacing:.04em}
+footer{background:#050608;color:#777;padding:26px 0}.footer-inner{display:flex;align-items:center;justify-content:space-between;font-size:11px}.footer-inner a{color:#fff;font-weight:900;padding:8px 10px}
+.modal{position:fixed;inset:0;z-index:100;display:none}.modal.open{display:block}.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.82)}.modal-dialog{position:relative;width:min(900px,calc(100% - 30px));max-height:90vh;overflow:auto;background:var(--paper);margin:5vh auto;padding:28px}.modal-close{position:absolute;right:12px;top:8px;border:0;background:none;font-size:32px;cursor:pointer;z-index:2}.modal-product{display:grid;grid-template-columns:330px 1fr;gap:35px;padding:15px}.modal-product .cover{height:470px}.modal-details .section-label{margin-top:15px}.modal-details h2{font-family:"Bebas Neue";font-size:50px;line-height:.9;margin:0 0 10px}.details-list{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin:20px 0}.detail{padding:10px 0;border-bottom:1px solid var(--line)}.detail b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:3px}.detail span{font-size:13px;font-weight:700}.request-btn{display:inline-block;background:var(--red);color:#fff;padding:14px 18px;font-size:11px;font-weight:900;box-shadow:4px 4px 0 var(--yellow)}
+@media(max-width:900px){.main-nav{gap:12px}.comic-grid,.comic-grid.large{grid-template-columns:repeat(2,1fr)}.hero-grid{grid-template-columns:1fr}.hero{min-height:auto}.hero-copy{padding:70px 0 20px}.hero-visual{height:480px}.about-grid,.contact-grid{grid-template-columns:1fr;gap:35px}.contact-buttons{max-width:600px}.nav{height:70px}.main-nav{display:none;position:absolute;top:70px;left:0;right:0;background:#090a0d;padding:20px;flex-direction:column;align-items:flex-start}.main-nav.open{display:flex}.menu-toggle{display:block}.social-link{border:0;padding:0}.split-cards{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.container{width:min(var(--max),calc(100% - 26px))}.logo-link img{width:165px;transform:translateY(18px)}.section{padding:65px 0}.section-heading{align-items:flex-start;gap:15px;flex-direction:column}.section-heading h2,.about h2{font-size:48px}.hero h1{font-size:58px}.hero-visual{transform:scale(.82);transform-origin:center top;height:390px;margin-bottom:-30px}.real-slab{width:210px;height:338px}.category-grid{grid-template-columns:1fr}.comic-grid,.comic-grid.large{grid-template-columns:repeat(2,1fr);gap:12px}.cover{height:270px}.cover-title{font-size:38px}.split-card{grid-template-columns:1fr}.split-art{min-height:180px}.catalog-controls{width:100%}.catalog-controls input{width:100%}.contact-section h2{font-size:50px}.contact-buttons{grid-template-columns:1fr}.contact-bottom{flex-direction:column;gap:8px}.footer-inner{gap:12px;flex-wrap:wrap}.modal-product{grid-template-columns:1fr;padding:0}.modal-product .cover{height:400px}.details-list{grid-template-columns:1fr 1fr}}
+
+/* Official publisher logos used in category cards */
+.category-logo{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:190px;
+  max-height:72px;
+  object-fit:contain;
+  margin-top:8px;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.25));
+}
+.category-logo-marvel{max-width:190px;max-height:72px;background:#fff;padding:7px;border-radius:2px}
+.category-logo-dc{max-width:82px;max-height:82px;border-radius:50%;background:#fff;padding:3px}
+.category-logo-image{max-width:190px;max-height:72px;background:#fff;padding:6px;border-radius:2px}
+.lot-badge{background:#111319;color:#fff;border-color:#111319}
+.contact-button{align-items:center;gap:12px}
+.contact-button > span:nth-child(2){flex:1}
+.platform-logo{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;min-width:36px;border-radius:10px;background:#fff;border:1px solid rgba(255,255,255,.22);overflow:hidden}
+.platform-logo img{display:block;width:22px;height:22px;object-fit:contain}
+.contact-button.whatsapp .platform-logo img{width:24px;height:24px}
+.contact-button.instagram .platform-logo img{width:24px;height:24px}
+.contact-button.facebook .platform-logo img{width:22px;height:22px}
+.contact-button.tiktok .platform-logo img{width:22px;height:22px}
+.contact-button.email .platform-logo img{width:20px;height:20px}
+@media(max-width:600px){.category-logo{max-width:160px;max-height:62px}.category-logo-dc{max-width:70px;max-height:70px}}
+
+</style>
 </head>
 <body>
   <div class="comic-stripe"></div>
@@ -165,22 +159,14 @@
         <div class="section-label" data-i18n="section_categories">CATEGORIE</div>
         <div class="category-grid">
           <a class="category-card marvel" href="#catalogo" data-category="marvel">
-    <span class="cat-small">MARVEL COMICS</span>
-    <img class="official-category-logo" src="images/Marvel-Comics-Logo-500x281.png" alt="Marvel Comics">
-    <span class="cat-arrow">→</span>
-</a>
-
-<a class="category-card dc" href="#catalogo" data-category="dc">
-    <span class="cat-small">DC COMICS</span>
-    <img class="official-category-logo" src="images/DC_Comics_2024.svg.webp" alt="DC Comics">
-    <span class="cat-arrow">→</span>
-</a>
-
-<a class="category-card image" href="#catalogo" data-category="image">
-    <span class="cat-small">IMAGE COMICS</span>
-    <img class="official-category-logo" src="images/image-comics-logo-png_seeklogo-460416.png" alt="Image Comics">
-    <span class="cat-arrow">→</span>
-</a>
+            <span class="cat-small">MARVEL COMICS</span><img class="category-logo category-logo-marvel" src="images/Marvel-Comics-Logo-500x281.png" alt="Marvel Comics"><span class="cat-arrow">→</span>
+          </a>
+          <a class="category-card dc" href="#catalogo" data-category="dc">
+            <span class="cat-small">DC COMICS</span><img class="category-logo category-logo-dc" src="images/DC_Comics_2024.svg.webp" alt="DC Comics"><span class="cat-arrow">→</span>
+          </a>
+          <a class="category-card image" href="#catalogo" data-category="image">
+            <span class="cat-small">IMAGE COMICS</span><img class="category-logo category-logo-image" src="images/image-comics-logo-png_seeklogo-460416.png" alt="Image Comics"><span class="cat-arrow">→</span>
+          </a>
           <a class="category-card other" href="#catalogo" data-category="other">
             <span class="cat-small">ALTRE CASE EDITRICI</span><strong>ALTRE</strong><span class="cat-arrow">→</span>
           </a>
@@ -263,11 +249,11 @@
           <p data-i18n="contact_text">Scrivici. Ti risponderemo per disponibilità e informazioni.</p>
         </div>
         <div class="contact-buttons">
-          <a class="contact-button whatsapp" href="https://wa.me/393385243303" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true">WA</span><span>WhatsApp</span><span>↗</span></a>
-          <a class="contact-button email" href="mailto:info@ilraccontastorie.com"><span class="platform-logo" aria-hidden="true">✉</span><span>Email</span><span>↗</span></a>
-          <a class="contact-button instagram" href="https://www.instagram.com/il_raccontastorie/" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true">◎</span><span>Instagram</span><span>↗</span></a>
-          <a class="contact-button facebook" href="https://www.facebook.com/profile.php?id=61580560901648" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true">f</span><span>Facebook</span><span>↗</span></a>
-          <a class="contact-button tiktok" href="https://www.tiktok.com/@il_raccontastorie" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true">♪</span><span>TikTok</span><span>↗</span></a>
+          <a class="contact-button whatsapp" href="https://wa.me/393385243303" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTM4MC45IDk3LjFDMzM5IDU1LjEgMjgzLjIgMzIgMjIzLjkgMzJjLTEyMi40IDAtMjIyIDk5LjYtMjIyIDIyMiAwIDM5LjEgMTAuMiA3Ny4zIDI5LjYgMTExTDAgNDgwbDExNy43LTMwLjljMzIuNCAxNy43IDY4LjkgMjcgMTA2LjEgMjdoLjFjMTIyLjMgMCAyMjQuMS05OS42IDIyNC4xLTIyMiAwLTU5LjMtMjUuMi0xMTUtNjcuMS0xNTd6bS0xNTcgMzQxLjZjLTMzLjIgMC02NS43LTguOS05NC0yNS43bC02LjctNC02OS44IDE4LjNMNzIgMzU5LjJsLTQuNC03Yy0xOC41LTI5LjQtMjguMi02My4zLTI4LjItOTguMiAwLTEwMS43IDgyLjgtMTg0LjUgMTg0LjYtMTg0LjUgNDkuMyAwIDk1LjYgMTkuMiAxMzAuNCA1NC4xIDM0LjggMzQuOSA1Ni4yIDgxLjIgNTYuMSAxMzAuNSAwIDEwMS44LTg0LjkgMTg0LjYtMTg2LjYgMTg0LjZ6bTEwMS4yLTEzOC4yYy01LjUtMi44LTMyLjgtMTYuMi0zNy45LTE4LTUuMS0xLjktOC44LTIuOC0xMi41IDIuOC0zLjcgNS42LTE0LjMgMTgtMTcuNiAyMS44LTMuMiAzLjctNi41IDQuMi0xMiAxLjQtMzIuNi0xNi4zLTU0LTI5LjEtNzUuNS02Ni01LjctOS44IDUuNy05LjEgMTYuMy0zMC4zIDEuOC0zLjcuOS02LjktLjUtOS43LTEuNC0yLjgtMTIuNS0zMC4xLTE3LjEtNDEuMi00LjUtMTAuOC05LjEtOS4zLTEyLjUtOS41LTMuMi0uMi02LjktLjItMTAuNi0uMi0zLjcgMC05LjcgMS40LTE0LjggNi45LTUuMSA1LjYtMTkuNCAxOS0xOS40IDQ2LjMgMCAyNy4zIDE5LjkgNTMuNyAyMi42IDU3LjQgMi44IDMuNyAzOS4xIDU5LjcgOTQuOCA4My44IDM1LjIgMTUuMiA0OSAxNi41IDY2LjYgMTMuOSAxMC43LTEuNiAzMi44LTEzLjQgMzcuNC0yNi40IDQuNi0xMyA0LjYtMjQuMSAzLjItMjYuNC0xLjMtMi41LTUtMy45LTEwLjUtNi42eiIvPjwvc3ZnPg==" alt=""></span><span>WhatsApp</span><span>↗</span></a>
+          <a class="contact-button email" href="mailto:info@ilraccontastorie.com"><span class="platform-logo" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTY0IDExMmMtOC44IDAtMTYgNy4yLTE2IDE2bDAgMjIuMUwyMjAuNSAyOTEuN2MyMC43IDE3IDUwLjQgMTcgNzEuMSAwTDQ2NCAxNTAuMWwwLTIyLjFjMC04LjgtNy4yLTE2LTE2LTE2TDY0IDExMnpNNDggMjEyLjJMNDggMzg0YzAgOC44IDcuMiAxNiAxNiAxNmwzODQgMGM4LjggMCAxNi03LjIgMTYtMTZsMC0xNzEuOEwzMjIgMzI4LjhjLTM4LjQgMzEuNS05My43IDMxLjUtMTMyIDBMNDggMjEyLjJ6TTAgMTI4QzAgOTIuNyAyOC43IDY0IDY0IDY0bDM4NCAwYzM1LjMgMCA2NCAyOC43IDY0IDY0bDAgMjU2YzAgMzUuMy0yOC43IDY0LTY0IDY0TDY0IDQ0OGMtMzUuMyAwLTY0LTI4LjctNjQtNjRMMCAxMjh6Ii8+PC9zdmc+" alt=""></span><span>Email</span><span>↗</span></a>
+          <a class="contact-button instagram" href="https://www.instagram.com/il_raccontastorie/" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTIyNC4xIDE0MWMtNjMuNiAwLTExNC45IDUxLjMtMTE0LjkgMTE0LjlzNTEuMyAxMTQuOSAxMTQuOSAxMTQuOVMzMzkgMzE5LjUgMzM5IDI1NS45IDI4Ny43IDE0MSAyMjQuMSAxNDF6bTAgMTg5LjZjLTQxLjEgMC03NC43LTMzLjUtNzQuNy03NC43czMzLjUtNzQuNyA3NC43LTc0LjcgNzQuNyAzMy41IDc0LjcgNzQuNy0zMy42IDc0LjctNzQuNyA3NC43em0xNDYuNC0xOTQuM2MwIDE0LjktMTIgMjYuOC0yNi44IDI2LjgtMTQuOSAwLTI2LjgtMTItMjYuOC0yNi44czEyLTI2LjggMjYuOC0yNi44IDI2LjggMTIgMjYuOCAyNi44em03Ni4xIDI3LjJjLTEuNy0zNS45LTkuOS02Ny43LTM2LjItOTMuOS0yNi4yLTI2LjItNTgtMzQuNC05My45LTM2LjItMzctMi4xLTE0Ny45LTIuMS0xODQuOSAwLTM1LjggMS43LTY3LjYgOS45LTkzLjkgMzYuMXMtMzQuNCA1OC0zNi4yIDkzLjljLTIuMSAzNy0yLjEgMTQ3LjkgMCAxODQuOSAxLjcgMzUuOSA5LjkgNjcuNyAzNi4yIDkzLjlzNTggMzQuNCA5My45IDM2LjJjMzcgMi4xIDE0Ny45IDIuMSAxODQuOSAwIDM1LjktMS43IDY3LjctOS45IDkzLjktMzYuMiAyNi4yLTI2LjIgMzQuNC01OCAzNi4yLTkzLjkgMi4xLTM3IDIuMS0xNDcuOCAwLTE4NC44ek0zOTguOCAzODhjLTcuOCAxOS42LTIyLjkgMzQuNy00Mi42IDQyLjYtMjkuNSAxMS43LTk5LjUgOS0xMzIuMSA5cy0xMDIuNyAyLjYtMTMyLjEtOWMtMTkuNi03LjgtMzQuNy0yMi45LTQyLjYtNDIuNi0xMS43LTI5LjUtOS05OS41LTktMTMyLjFzLTIuNi0xMDIuNyA5LTEzMi4xYzcuOC0xOS42IDIyLjktMzQuNyA0Mi42LTQyLjYgMjkuNS0xMS43IDk5LjUtOSAxMzIuMS05czEwMi43LTIuNiAxMzIuMSA5YzE5LjYgNy44IDM0LjcgMjIuOSA0Mi42IDQyLjYgMTEuNyAyOS41IDkgOTkuNSA5IDEzMi4xczIuNyAxMDIuNy05IDEzMi4xeiIvPjwvc3ZnPg==" alt=""></span><span>Instagram</span><span>↗</span></a>
+          <a class="contact-button facebook" href="https://www.facebook.com/profile.php?id=61580560901648" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTUxMiAyNTZDNTEyIDExNC42IDM5Ny40IDAgMjU2IDBTMCAxMTQuNiAwIDI1NkMwIDM3NiA4Mi43IDQ3Ni44IDE5NC4yIDUwNC41VjMzNC4ySDE0MS40VjI1Nmg1Mi44VjIyMi4zYzAtODcuMSAzOS40LTEyNy41IDEyNS0xMjcuNWMxNi4yIDAgNDQuMiAzLjIgNTUuNyA2LjRWMTcyYy02LS42LTE2LjUtMS0yOS42LTFjLTQyIDAtNTguMiAxNS45LTU4LjIgNTcuMlYyNTZoODMuNmwtMTQuNCA3OC4ySDI4N1Y1MTAuMUM0MTMuOCA0OTQuOCA1MTIgMzg2LjkgNTEyIDI1NmgweiIvPjwvc3ZnPg==" alt=""></span><span>Facebook</span><span>↗</span></a>
+          <a class="contact-button tiktok" href="https://www.tiktok.com/@il_raccontastorie" target="_blank" rel="noopener"><span class="platform-logo" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTQ0OCwyMDkuOTFhMjEwLjA2LDIxMC4wNiwwLDAsMS0xMjIuNzctMzkuMjVWMzQ5LjM4QTE2Mi41NSwxNjIuNTUsMCwxLDEsMTg1LDE4OC4zMVYyNzguMmE3NC42Miw3NC42MiwwLDEsMCw1Mi4yMyw3MS4xOFYwbDg4LDBhMTIxLjE4LDEyMS4xOCwwLDAsMCwxLjg2LDIyLjE3aDBBMTIyLjE4LDEyMi4xOCwwLDAsMCwzODEsMTAyLjM5YTEyMS40MywxMjEuNDMsMCwwLDAsNjcsMjAuMTRaIi8+PC9zdmc+" alt=""></span><span>TikTok</span><span>↗</span></a>
         </div>
       </div>
       <div class="contact-bottom container">
@@ -291,6 +277,263 @@
       <div id="modal-content"></div>
     </div>
   </div>
-  <script src="assets/script.js"></script>
+  <script>
+const comics = [
+  {id:1,lot:"0001",title:"Spider-Man #1",number:"#1",publisher:"Marvel Comics",year:"1990",edition:"Silver Edition",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",image:"images/spiderman-1-silver-98.webp",description:{it:"Spider-Man #1 del 1990, Silver Edition, con storia, copertina e arte di Todd McFarlane. Esemplare graduato CGC 9.8.",en:"Spider-Man #1 from 1990, Silver Edition, featuring story, cover and art by Todd McFarlane. CGC 9.8 graded copy.",es:"Spider-Man #1 de 1990, Silver Edition, con historia, portada y arte de Todd McFarlane. Ejemplar graduado CGC 9.8.",fr:"Spider-Man #1 de 1990, Silver Edition, avec histoire, couverture et dessins de Todd McFarlane. Exemplaire gradé CGC 9.8.",de:"Spider-Man #1 aus dem Jahr 1990, Silver Edition, mit Story, Cover und Artwork von Todd McFarlane. CGC 9.8 bewertetes Exemplar."},new:true,color:"red"},
+  {id:2,lot:"0002",title:"Deadpool vs. Carnage #1",number:"#1",publisher:"Marvel Comics",year:"2014",edition:"Direct Edition",type:"signed",category:"marvel",grade:"9.4",grader:"CGC Signature Series",era:"modern",image:"images/deadpool-vs-carnage-1-signed-94.jpg",description:{it:"Deadpool vs. Carnage #1 del 2014, Direct Edition, firmato da Glenn Fabry il 19/09/2023. Storia di Cullen Bunn, matite di Salva Espin e copertina di Glenn Fabry.",en:"Deadpool vs. Carnage #1 from 2014, Direct Edition, signed by Glenn Fabry on 19/09/2023. Story by Cullen Bunn, pencils by Salva Espin and cover by Glenn Fabry.",es:"Deadpool vs. Carnage #1 de 2014, Direct Edition, firmado por Glenn Fabry el 19/09/2023. Historia de Cullen Bunn, lápices de Salva Espin y portada de Glenn Fabry.",fr:"Deadpool vs. Carnage #1 de 2014, Direct Edition, signé par Glenn Fabry le 19/09/2023. Scénario de Cullen Bunn, dessins de Salva Espin et couverture de Glenn Fabry.",de:"Deadpool vs. Carnage #1 aus dem Jahr 2014, Direct Edition, am 19.09.2023 von Glenn Fabry signiert. Story von Cullen Bunn, Zeichnungen von Salva Espin und Cover von Glenn Fabry."},new:true,color:"red"},
+  {id:3,lot:"0003",title:"Simpsons Comics #1",number:"#1",publisher:"Bongo Comics Group",year:"1993",edition:"First Issue Collector’s Item",type:"signed",category:"other",grade:"9.6",grader:"CGC x JSA Authentic Autograph",era:"vintage",image:"images/simpsons-comics-1-signed-96.jpg",description:{it:"Prima uscita di Simpsons Comics del 1993, Bongo Comics Group. Esemplare CGC 9.6 con autografo autenticato da JSA e firma di Bill Morrison. Storia e arte indicate sulla slab: Steve e Cindy Vance, Sondra R. & Tim Bavington, Bill Morrison.",en:"First issue of Simpsons Comics from 1993, published by Bongo Comics Group. CGC 9.6 copy with a JSA-authenticated autograph signed by Bill Morrison. Story and art credits shown on the slab include Steve and Cindy Vance, Sondra R. & Tim Bavington, and Bill Morrison.",es:"Primera edición de Simpsons Comics de 1993, publicada por Bongo Comics Group. Ejemplar CGC 9.6 con autógrafo autenticado por JSA y firmado por Bill Morrison. Los créditos de historia y arte indicados en la slab incluyen a Steve y Cindy Vance, Sondra R. y Tim Bavington, y Bill Morrison.",fr:"Premier numéro de Simpsons Comics de 1993, publié par Bongo Comics Group. Exemplaire CGC 9.6 avec autographe authentifié par JSA et signé par Bill Morrison. Les crédits de scénario et d’art indiqués sur la slab incluent Steve et Cindy Vance, Sondra R. & Tim Bavington et Bill Morrison.",de:"Erstausgabe von Simpsons Comics aus dem Jahr 1993, veröffentlicht von Bongo Comics Group. CGC 9.6 Exemplar mit von JSA authentifiziertem Autogramm von Bill Morrison. Die auf der Slab genannten Story- und Artwork-Credits umfassen Steve und Cindy Vance, Sondra R. & Tim Bavington sowie Bill Morrison."},new:true,color:"yellow"},
+  {id:4,lot:"0004",title:"Batman",number:"—",publisher:"DC Comics",year:"—",edition:"Signed",type:"signed",category:"dc",grade:"—",grader:"—",era:"—",image:"images/batman-signed.jpg",description:{it:"Copia/autografo a tema Batman. La fotografia fornita mostra più firme sul fumetto, ma non rende visibili numero, anno, edizione o certificazione; questi dati potranno essere completati quando avremo una foto della slab o della testata.",en:"Batman-themed signed copy. The supplied photo shows multiple signatures on the comic, but the issue number, year, edition and certification are not visible; these details can be completed when a photo of the slab or cover is available.",es:"Ejemplar firmado relacionado con Batman. La fotografía proporcionada muestra varias firmas en el cómic, pero no permite ver el número, año, edición ni certificación; estos datos podrán completarse cuando tengamos una foto de la slab o de la portada.",fr:"Exemplaire signé sur le thème de Batman. La photo fournie montre plusieurs signatures sur la bande dessinée, mais le numéro, l’année, l’édition et la certification ne sont pas visibles ; ces informations pourront être complétées avec une photo de la slab ou de la couverture.",de:"Signiertes Batman-Exemplar. Das bereitgestellte Foto zeigt mehrere Unterschriften auf dem Comic, aber Nummer, Jahr, Ausgabe und Zertifizierung sind nicht erkennbar. Diese Angaben können ergänzt werden, sobald ein Foto der Slab oder des Covers vorliegt."},new:true,color:"blue"},
+  {id:5,lot:"0005",title:"Amazing Spider-Man #361",number:"#361",publisher:"Marvel",year:"1992",edition:"Regular",type:"regular",category:"marvel",grade:"9.6",grader:"CGC",era:"vintage",description:{it:"Amazing Spider-Man #361 del 1992. Esemplare graduato CGC 9.6.",en:"Amazing Spider-Man #361 from 1992. CGC 9.6 graded copy.",es:"Amazing Spider-Man #361 de 1992. Ejemplar graduado CGC 9.6.",fr:"Amazing Spider-Man #361 de 1992. Exemplaire gradé CGC 9.6.",de:"Amazing Spider-Man #361 aus dem Jahr 1992. CGC 9.6 bewertetes Exemplar."},new:false,color:"red"},
+  {id:6,lot:"0006",title:"Batman #1",number:"#1",publisher:"DC",year:"2016",edition:"Signed",type:"signed",category:"dc",grade:"9.8",grader:"CGC",era:"modern",description:{it:"Batman #1 del 2016, edizione firmata. Esemplare graduato CGC 9.8.",en:"Batman #1 from 2016, signed edition. CGC 9.8 graded copy.",es:"Batman #1 de 2016, edición firmada. Ejemplar graduado CGC 9.8.",fr:"Batman #1 de 2016, édition signée. Exemplaire gradé CGC 9.8.",de:"Batman #1 aus dem Jahr 2016, signierte Ausgabe. CGC 9.8 bewertetes Exemplar."},new:false,color:"blue"},
+  {id:7,lot:"0007",title:"The Walking Dead #1",number:"#1",publisher:"Image",year:"2003",edition:"Regular",type:"regular",category:"image",grade:"9.6",grader:"CGC",era:"modern",description:{it:"The Walking Dead #1 del 2003, Image Comics. Esemplare graduato CGC 9.6.",en:"The Walking Dead #1 from 2003, Image Comics. CGC 9.6 graded copy.",es:"The Walking Dead #1 de 2003, Image Comics. Ejemplar graduado CGC 9.6.",fr:"The Walking Dead #1 de 2003, Image Comics. Exemplaire gradé CGC 9.6.",de:"The Walking Dead #1 aus dem Jahr 2003, Image Comics. CGC 9.6 bewertetes Exemplar."},new:false,color:"dark"},
+  {id:8,lot:"0008",title:"X-Men #1",number:"#1",publisher:"Marvel",year:"1991",edition:"Signed",type:"signed",category:"marvel",grade:"9.6",grader:"CGC",era:"vintage",description:{it:"X-Men #1 del 1991, edizione firmata. Esemplare graduato CGC 9.6.",en:"X-Men #1 from 1991, signed edition. CGC 9.6 graded copy.",es:"X-Men #1 de 1991, edición firmada. Ejemplar graduado CGC 9.6.",fr:"X-Men #1 de 1991, édition signée. Exemplaire gradé CGC 9.6.",de:"X-Men #1 aus dem Jahr 1991, signierte Ausgabe. CGC 9.6 bewertetes Exemplar."},new:false,color:"red"},
+  {id:9,lot:"0009",title:"Wolverine #41",number:"#41",publisher:"Marvel Comics",year:"2024",edition:"Capullo 'Virgin' Edition",type:"signed",category:"marvel",grade:"9.8",grader:"CGC Signature Series",era:"modern",image:"images/wolverine-41-signed-98.jpg",description:{it:"Wolverine #41, Marvel Comics. Esemplare CGC Signature Series 9.8, Capullo 'Virgin' Edition, firmato da Benjamin Percy e Greg Capullo.",en:"Wolverine #41, Marvel Comics. CGC Signature Series 9.8, Capullo 'Virgin' Edition, signed by Benjamin Percy and Greg Capullo.",es:"Wolverine #41, Marvel Comics. Ejemplar CGC Signature Series 9.8, Capullo 'Virgin' Edition, firmado por Benjamin Percy y Greg Capullo.",fr:"Wolverine #41, Marvel Comics. Exemplaire CGC Signature Series 9.8, Capullo 'Virgin' Edition, signé par Benjamin Percy et Greg Capullo.",de:"Wolverine #41, Marvel Comics. CGC Signature Series 9.8, Capullo 'Virgin' Edition, signiert von Benjamin Percy und Greg Capullo."},new:true,color:"red"},
+  {id:10,lot:"0010",title:"Doom 2099 #1",number:"#1",publisher:"Marvel Comics",year:"1993",edition:"Foil Cover",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",image:"images/doom-2099-1-98.jpg",description:{it:"Doom 2099 #1 del 1993, Marvel Comics, con Foil Cover. Esemplare graduato CGC 9.8.",en:"Doom 2099 #1 from 1993, Marvel Comics, with Foil Cover. CGC 9.8 graded copy.",es:"Doom 2099 #1 de 1993, Marvel Comics, con Foil Cover. Ejemplar graduado CGC 9.8.",fr:"Doom 2099 #1 de 1993, Marvel Comics, avec Foil Cover. Exemplaire gradé CGC 9.8.",de:"Doom 2099 #1 aus dem Jahr 1993, Marvel Comics, mit Foil Cover. CGC 9.8 bewertetes Exemplar."},new:true,color:"red"}
+];
+
+const translations = {
+  it:{
+    nav_comics:"Fumetti",nav_categories:"Categorie",nav_about:"Chi siamo",nav_contact:"Contatti",
+    hero_kicker:"FUMETTI GRADATI · COLLEZIONISMO",hero_title:"IL TUO PROSSIMO<br><span>PEZZO DA COLLEZIONE.</span>",
+    hero_text:"Una vetrina dedicata ai fumetti da collezione: CGC, signed, variant e grandi classici. Scopri le nostre disponibilità e contattaci per informazioni.",
+    hero_button:"SCOPRI I FUMETTI",hero_button2:"ESPLORA LE CATEGORIE",section_categories:"CATEGORIE",
+    section_featured:"IN VETRINA",featured_title:"Ultimi arrivi",view_all:"Vedi catalogo →",
+    collection_title:"Modern & Vintage",modern_label:"MODERNI",modern_title:"Le uscite che stanno costruendo il futuro.",
+    vintage_label:"VINTAGE",vintage_title:"Classici che hanno fatto la storia.",
+    section_catalog:"CATALOGO",catalog_title:"I nostri fumetti",search_placeholder:"Cerca un fumetto...",
+    all:"Tutti",regular:"Regular",signed:"Signed",no_results:"Nessun fumetto trovato.",
+    section_about:"IL PROGETTO",about_title:"Il Raccontastorie",
+    about_text:"Una vetrina dedicata alla passione per i fumetti gradati e al collezionismo. Qui puoi esplorare le nostre disponibilità, conoscere meglio ogni pezzo e contattarci direttamente.",
+    about_text2:"Il sito non è uno shop: per ogni fumetto trovi una scheda completa e un pulsante per richiedere informazioni.",
+    section_contact:"CONTATTI",contact_title:"Hai trovato il fumetto che cercavi?",contact_text:"Scrivici. Ti risponderemo per disponibilità e informazioni.",
+    request:"RICHIEDI INFORMAZIONI",description:"Descrizione",details:"Dettagli",category:"Categoria",type:"Tipo",
+    number:"Numero",lot:"Lotto",publisher:"Editore",year:"Anno",edition:"Edizione",grade:"Grading",close:"Chiudi"
+  },
+  en:{
+    nav_comics:"Comics",nav_categories:"Categories",nav_about:"About",nav_contact:"Contact",
+    hero_kicker:"GRADED COMICS · COLLECTING",hero_title:"YOUR NEXT<br><span>COLLECTOR'S PIECE.</span>",
+    hero_text:"A showcase dedicated to collectible comics: CGC, signed editions, variants and classics. Discover our selection and contact us for information.",
+    hero_button:"EXPLORE COMICS",hero_button2:"EXPLORE CATEGORIES",section_categories:"CATEGORIES",
+    section_featured:"FEATURED",featured_title:"Latest arrivals",view_all:"View catalog →",
+    collection_title:"Modern & Vintage",modern_label:"MODERN",modern_title:"The releases shaping the future.",
+    vintage_label:"VINTAGE",vintage_title:"Classics that made history.",
+    section_catalog:"CATALOG",catalog_title:"Our comics",search_placeholder:"Search a comic...",
+    all:"All",regular:"Regular",signed:"Signed",no_results:"No comics found.",
+    section_about:"THE PROJECT",about_title:"Il Raccontastorie",
+    about_text:"A showcase built around our passion for graded comics and collecting. Explore our selection, learn more about each piece and contact us directly.",
+    about_text2:"This is not an online shop: every comic has a complete profile and a button to request information.",
+    section_contact:"CONTACT",contact_title:"Found the comic you were looking for?",contact_text:"Write to us for availability and information.",
+    request:"REQUEST INFORMATION",description:"Description",details:"Details",category:"Category",type:"Type",
+    number:"Number",lot:"Lot",publisher:"Publisher",year:"Year",edition:"Edition",grade:"Grading",close:"Close"
+  },
+  es:{
+    nav_comics:"Cómics",nav_categories:"Categorías",nav_about:"Quiénes somos",nav_contact:"Contacto",
+    hero_kicker:"CÓMICS GRADUADOS · COLECCIONISMO",hero_title:"TU PRÓXIMA<br><span>PIEZA DE COLECCIÓN.</span>",
+    hero_text:"Un escaparate dedicado a los cómics de colección: CGC, ediciones firmadas, variantes y clásicos. Descubre nuestra selección y contáctanos para más información.",
+    hero_button:"DESCUBRE LOS CÓMICS",hero_button2:"EXPLORA LAS CATEGORÍAS",section_categories:"CATEGORÍAS",
+    section_featured:"DESTACADOS",featured_title:"Últimas novedades",view_all:"Ver catálogo →",
+    collection_title:"Modernos y Vintage",modern_label:"MODERNOS",modern_title:"Las ediciones que están construyendo el futuro.",
+    vintage_label:"VINTAGE",vintage_title:"Clásicos que hicieron historia.",
+    section_catalog:"CATÁLOGO",catalog_title:"Nuestros cómics",search_placeholder:"Buscar un cómic...",
+    all:"Todos",regular:"Regular",signed:"Firmado",no_results:"No se encontraron cómics.",
+    section_about:"EL PROYECTO",about_title:"Il Raccontastorie",
+    about_text:"Un escaparate creado alrededor de nuestra pasión por los cómics graduados y el coleccionismo. Explora nuestra selección, conoce cada pieza y contáctanos directamente.",
+    about_text2:"Este sitio no es una tienda online: cada cómic tiene una ficha completa y un botón para solicitar información.",
+    section_contact:"CONTACTO",contact_title:"¿Has encontrado el cómic que buscabas?",contact_text:"Escríbenos para consultar disponibilidad e información.",
+    request:"SOLICITAR INFORMACIÓN",description:"Descripción",details:"Detalles",category:"Categoría",type:"Tipo",
+    number:"Número",lot:"Lote",publisher:"Editorial",year:"Año",edition:"Edición",grade:"Grading",close:"Cerrar"
+  },
+  fr:{
+    nav_comics:"Bandes dessinées",nav_categories:"Catégories",nav_about:"À propos",nav_contact:"Contact",
+    hero_kicker:"BD GRADÉES · COLLECTION",hero_title:"VOTRE PROCHAINE<br><span>PIÈCE DE COLLECTION.</span>",
+    hero_text:"Une vitrine dédiée aux bandes dessinées de collection : CGC, éditions signées, variantes et classiques. Découvrez notre sélection et contactez-nous.",
+    hero_button:"DÉCOUVRIR LES BD",hero_button2:"EXPLORER LES CATÉGORIES",section_categories:"CATÉGORIES",
+    section_featured:"À LA UNE",featured_title:"Dernières arrivées",view_all:"Voir le catalogue →",
+    collection_title:"Moderne & Vintage",modern_label:"MODERNE",modern_title:"Les éditions qui construisent l'avenir.",
+    vintage_label:"VINTAGE",vintage_title:"Les classiques qui ont marqué l'histoire.",
+    section_catalog:"CATALOGUE",catalog_title:"Nos bandes dessinées",search_placeholder:"Rechercher une BD...",
+    all:"Toutes",regular:"Regular",signed:"Signée",no_results:"Aucune BD trouvée.",
+    section_about:"LE PROJET",about_title:"Il Raccontastorie",
+    about_text:"Une vitrine dédiée à notre passion pour les bandes dessinées gradées et la collection. Explorez notre sélection et contactez-nous directement.",
+    about_text2:"Ce site n'est pas une boutique en ligne : chaque BD possède une fiche complète et un bouton pour demander des informations.",
+    section_contact:"CONTACT",contact_title:"Vous avez trouvé la BD que vous cherchiez ?",contact_text:"Écrivez-nous pour connaître la disponibilité et obtenir des informations.",
+    request:"DEMANDER DES INFORMATIONS",description:"Description",details:"Détails",category:"Catégorie",type:"Type",
+    number:"Numéro",lot:"Lot",publisher:"Éditeur",year:"Année",edition:"Édition",grade:"Grading",close:"Fermer"
+  },
+  de:{
+    nav_comics:"Comics",nav_categories:"Kategorien",nav_about:"Über uns",nav_contact:"Kontakt",
+    hero_kicker:"GEGRADete COMICS · SAMMELN",hero_title:"DEIN NÄCHSTES<br><span> SAMMLERSTÜCK.</span>",
+    hero_text:"Eine Vitrine für hochwertige Sammler-Comics: CGC, signierte Ausgaben, Varianten und Klassiker. Entdecke unsere Auswahl und kontaktiere uns für weitere Informationen.",
+    hero_button:"COMICS ENTDECKEN",hero_button2:"KATEGORIEN ENTDECKEN",section_categories:"KATEGORIEN",
+    section_featured:"HIGHLIGHTS",featured_title:"Neueste Zugänge",view_all:"Katalog ansehen →",
+    collection_title:"Modern & Vintage",modern_label:"MODERN",modern_title:"Ausgaben, die die Zukunft prägen.",
+    vintage_label:"VINTAGE",vintage_title:"Klassiker, die Geschichte geschrieben haben.",
+    section_catalog:"KATALOG",catalog_title:"Unsere Comics",search_placeholder:"Comic suchen...",
+    all:"Alle",regular:"Regular",signed:"Signiert",no_results:"Keine Comics gefunden.",
+    section_about:"DAS PROJEKT",about_title:"Il Raccontastorie",
+    about_text:"Eine Vitrine aus Leidenschaft für gegradete Comics und das Sammeln. Entdecke unsere Auswahl, erfahre mehr über jedes Stück und kontaktiere uns direkt.",
+    about_text2:"Dies ist kein Online-Shop: Jeder Comic besitzt eine vollständige Karte und eine Schaltfläche für Informationsanfragen.",
+    section_contact:"KONTAKT",contact_title:"Hast du den gesuchten Comic gefunden?",contact_text:"Schreib uns für Verfügbarkeit und weitere Informationen.",
+    request:"INFORMATIONEN ANFRAGEN",description:"Beschreibung",details:"Details",category:"Kategorie",type:"Typ",
+    number:"Nummer",lot:"Los",publisher:"Verlag",year:"Jahr",edition:"Ausgabe",grade:"Grading",close:"Schließen"
+  }
+};
+
+let currentLang="it", activeCategory="all", activeType="all", activeEra=null;
+
+function t(key){return translations[currentLang][key] || key;}
+
+function getDescription(c){
+  if(typeof c.description === "string") return c.description;
+  return c.description[currentLang] || c.description.it || "";
+}
+
+function ensureLotNumbers(){
+  let maxLot=0;
+  comics.forEach(c=>{
+    const n=parseInt(c.lot,10);
+    if(Number.isFinite(n)) maxLot=Math.max(maxLot,n);
+  });
+  comics.forEach(c=>{
+    if(!c.lot){
+      maxLot += 1;
+      c.lot=String(maxLot).padStart(4,"0");
+    }
+  });
+}
+ensureLotNumbers();
+
+function placeholder(c){
+  return `<div class="placeholder-cover ${c.color}">
+    <span class="cover-publisher">${c.publisher.toUpperCase()}</span>
+    <span class="cover-title">${c.title}</span>
+    <span class="cover-grade">${c.grader} ${c.grade}</span>
+  </div>`;
+}
+
+function card(c){
+  const badges = [
+    `<span class="comic-badge lot-badge">${t("lot")} ${c.lot}</span>`,
+    `<span class="comic-badge publisher-badge">${c.publisher.replace(" Comics","").toUpperCase()}</span>`,
+    `<span class="comic-badge type-badge">${c.type === "signed" ? t("signed").toUpperCase() : t("regular").toUpperCase()}</span>`,
+    `<span class="comic-badge grade-badge">${c.grade}</span>`
+  ].join("");
+  return `<article class="comic-card-item" data-id="${c.id}">
+    <div class="cover">${c.image ? `<img src="${c.image}" alt="${c.title}">` : placeholder(c)}</div>
+    <div class="comic-meta">
+      <div class="comic-badges">${badges}</div>
+      <h3>${c.title}</h3>
+      <p>${c.publisher} · ${c.year}</p>
+      <span class="card-arrow">${t("request")} →</span>
+    </div>
+  </article>`;
+}
+
+function renderFeatured(){
+  const grid=document.getElementById("featured-grid");
+  grid.innerHTML=comics.filter(c=>c.new).slice(0,4).map(card).join("");
+  bindCards();
+}
+
+function renderCatalog(){
+  const q=document.getElementById("search").value.trim().toLowerCase();
+  let list=comics.filter(c=>{
+    const categoryOK=activeCategory==="all" || c.category===activeCategory;
+    const typeOK=activeType==="all" || c.type===activeType;
+    const eraOK=!activeEra || c.era===activeEra;
+    const qOK=!q || [c.title,c.publisher,c.year,c.edition,c.grade].join(" ").toLowerCase().includes(q);
+    return categoryOK && typeOK && eraOK && qOK;
+  });
+  const grid=document.getElementById("catalog-grid");
+  grid.innerHTML=list.map(card).join("");
+  document.getElementById("empty-state").hidden=list.length>0;
+  bindCards();
+}
+
+function bindCards(){
+  document.querySelectorAll(".comic-card-item").forEach(el=>{
+    el.addEventListener("click",()=>openModal(Number(el.dataset.id)));
+  });
+}
+
+function openModal(id){
+  const c=comics.find(x=>x.id===id);
+  const modal=document.getElementById("comic-modal");
+  const content=document.getElementById("modal-content");
+  content.innerHTML=`<div class="modal-product">
+    <div class="cover">${c.image ? `<img src="${c.image}" alt="${c.title}">` : placeholder(c)}</div>
+    <div class="modal-details">
+      <div class="section-label">${c.category.toUpperCase()} · ${c.type.toUpperCase()}</div>
+      <h2>${c.title}</h2>
+      <div class="details-list">
+        <div class="detail"><b>${t("lot")}</b><span>${c.lot}</span></div>
+        <div class="detail"><b>${t("number")}</b><span>${c.number}</span></div>
+        <div class="detail"><b>${t("publisher")}</b><span>${c.publisher}</span></div>
+        <div class="detail"><b>${t("year")}</b><span>${c.year}</span></div>
+        <div class="detail"><b>${t("edition")}</b><span>${c.edition}</span></div>
+        <div class="detail"><b>${t("grade")}</b><span>${c.grade}</span></div>
+      </div>
+      <h4>${t("description")}</h4>
+      <p>${getDescription(c)}</p>
+      <a class="request-btn" href="https://wa.me/393385243303?text=${encodeURIComponent("Ciao, sono interessato al fumetto: "+c.title+" (Lotto "+c.lot+")")}" target="_blank" rel="noopener">${t("request")} ↗</a>
+    </div>
+  </div>`;
+  modal.classList.add("open"); modal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
+}
+function closeModal(){
+  const modal=document.getElementById("comic-modal");
+  modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.style.overflow="";
+}
+
+function setLanguage(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>el.innerHTML=t(el.dataset.i18nHtml));
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>el.placeholder=t(el.dataset.i18nPlaceholder));
+  document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  renderFeatured(); renderCatalog();
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  renderFeatured();renderCatalog();
+  document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    if(btn.dataset.category){
+      activeCategory=btn.dataset.category;
+      activeType=btn.dataset.type || "all";
+    } else {
+      activeCategory="all";
+      activeType="all";
+    }
+    activeEra=null;
+    renderCatalog();
+  }));
+  document.querySelectorAll(".category-card").forEach(btn=>btn.addEventListener("click",()=>{
+    activeCategory=btn.dataset.category;activeType="all";activeEra=null;
+    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+    const target=document.querySelector(`.main-tab[data-category="${activeCategory}"]`);
+    if(target) target.classList.add("active");
+    renderCatalog();
+  }));
+  document.querySelectorAll(".split-card").forEach(btn=>btn.addEventListener("click",()=>{
+    activeEra=btn.dataset.era;activeCategory="all";activeType="all";
+    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+    document.querySelector('.main-tab[data-filter="all"]').classList.add("active");
+    renderCatalog();
+  }));
+  const backTop=document.getElementById("back-to-top");
+  backTop.addEventListener("click",e=>{e.preventDefault();window.scrollTo({top:0,behavior:"smooth"});});
+  document.getElementById("search").addEventListener("input",renderCatalog);
+  document.querySelectorAll(".lang").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
+  document.querySelector(".modal-close").addEventListener("click",closeModal);
+  document.querySelector(".modal-backdrop").addEventListener("click",closeModal);
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+  const toggle=document.querySelector(".menu-toggle"),nav=document.querySelector(".main-nav");
+  toggle.addEventListener("click",()=>{const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",open)});
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+});
+</script>
 </body>
 </html>
