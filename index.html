@@ -293,7 +293,12 @@ footer{background:#050608;color:#777;padding:26px 0}.footer-inner{display:flex;a
     </div>
   </footer>
 
-  <div id="image-lightbox" class="image-lightbox" aria-hidden="true">\n    <button class="image-lightbox-close" aria-label="Chiudi immagine">×</button>\n    <img id="image-lightbox-img" src="" alt="">\n  </div>\n\n  <div id="comic-modal" class="modal" aria-hidden="true">
+  <div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+    <button class="image-lightbox-close" aria-label="Chiudi immagine">×</button>
+    <img id="image-lightbox-img" src="" alt="">
+  </div>
+
+  <div id="comic-modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog">
       <button class="modal-close" aria-label="Chiudi">×</button>
@@ -504,7 +509,8 @@ function renderModalGallery(){
       <div class="gallery-counter">${modalImageIndex+1} / ${images.length}</div>
     `;
     gallery.querySelector(".gallery-prev")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex>0){modalImageIndex--;renderModalGallery();}});
-    gallery.querySelector(".gallery-next")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex<images.length-1){modalImageIndex++;renderModalGallery();}});\n    gallery.querySelector(".gallery-frame img")?.addEventListener("click",e=>{e.stopPropagation();openImageLightbox(src,modalComic.title);});
+    gallery.querySelector(".gallery-next")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex<images.length-1){modalImageIndex++;renderModalGallery();}});
+    gallery.querySelector(".gallery-frame img")?.addEventListener("click",e=>{e.stopPropagation();openImageLightbox(src,modalComic.title);});
   }
 }
 
@@ -617,7 +623,9 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll(".lang").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
   document.querySelector(".modal-close").addEventListener("click",closeModal);
   document.querySelector(".modal-backdrop").addEventListener("click",closeModal);
-  document.querySelector(".image-lightbox-close").addEventListener("click",closeImageLightbox);\n  document.getElementById("image-lightbox").addEventListener("click",e=>{if(e.target.id==="image-lightbox" || e.target.id==="image-lightbox-img")closeImageLightbox();});\n  document.addEventListener("keydown",e=>{if(e.key==="Escape"){const lightbox=document.getElementById("image-lightbox");if(lightbox?.classList.contains("open"))closeImageLightbox();else closeModal()}});
+  document.querySelector(".image-lightbox-close").addEventListener("click",closeImageLightbox);
+  document.getElementById("image-lightbox").addEventListener("click",e=>{if(e.target.id==="image-lightbox" || e.target.id==="image-lightbox-img")closeImageLightbox();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){const lightbox=document.getElementById("image-lightbox");if(lightbox?.classList.contains("open"))closeImageLightbox();else closeModal()}});
   const toggle=document.querySelector(".menu-toggle"),nav=document.querySelector(".main-nav");
   toggle.addEventListener("click",()=>{const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",open)});
   nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
