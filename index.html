@@ -120,7 +120,7 @@ footer{background:#050608;color:#777;padding:26px 0}.footer-inner{display:flex;a
 .gallery-frame img{display:block;max-width:100%;max-height:520px;width:auto;height:auto;object-fit:contain;border-radius:4px}
 .gallery-nav{width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;background:#111;color:#fff;font-size:34px;line-height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .gallery-nav:disabled{opacity:.25;cursor:default}
-.gallery-counter{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.gallery-counter{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}.gallery-frame img{cursor:zoom-in}.image-lightbox{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(0,0,0,.94)}.image-lightbox.open{display:flex}.image-lightbox img{display:block;max-width:94vw;max-height:94vh;width:auto;height:auto;object-fit:contain;box-shadow:0 15px 45px rgba(0,0,0,.45);cursor:zoom-out}.image-lightbox-close{position:absolute;top:16px;right:22px;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:34px;line-height:1;cursor:pointer;z-index:2}.image-lightbox-close:hover{background:rgba(255,255,255,.22)}
 @media(max-width:800px){.modal-gallery{min-height:380px}.gallery-frame{height:380px}.gallery-frame img{max-height:380px}.gallery-nav{width:38px;height:38px;flex-basis:38px;font-size:28px}}
 </style>
 </style>
@@ -293,7 +293,7 @@ footer{background:#050608;color:#777;padding:26px 0}.footer-inner{display:flex;a
     </div>
   </footer>
 
-  <div id="comic-modal" class="modal" aria-hidden="true">
+  <div id="image-lightbox" class="image-lightbox" aria-hidden="true">\n    <button class="image-lightbox-close" aria-label="Chiudi immagine">×</button>\n    <img id="image-lightbox-img" src="" alt="">\n  </div>\n\n  <div id="comic-modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog">
       <button class="modal-close" aria-label="Chiudi">×</button>
@@ -499,13 +499,31 @@ function renderModalGallery(){
   if(gallery){
     gallery.innerHTML=`
       <button class="gallery-nav gallery-prev" aria-label="Foto precedente" ${modalImageIndex===0?"disabled":""}>‹</button>
-      <div class="gallery-frame"><img src="${src}" alt="${modalComic.title}"></div>
+      <div class="gallery-frame"><img src="${src}" alt="${modalComic.title}" title="Clicca per ingrandire"></div>
       <button class="gallery-nav gallery-next" aria-label="Foto successiva" ${modalImageIndex===images.length-1?"disabled":""}>›</button>
       <div class="gallery-counter">${modalImageIndex+1} / ${images.length}</div>
     `;
     gallery.querySelector(".gallery-prev")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex>0){modalImageIndex--;renderModalGallery();}});
-    gallery.querySelector(".gallery-next")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex<images.length-1){modalImageIndex++;renderModalGallery();}});
+    gallery.querySelector(".gallery-next")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex<images.length-1){modalImageIndex++;renderModalGallery();}});\n    gallery.querySelector(".gallery-frame img")?.addEventListener("click",e=>{e.stopPropagation();openImageLightbox(src,modalComic.title);});
   }
+}
+
+function openImageLightbox(src,alt){
+  const lightbox=document.getElementById("image-lightbox");
+  const img=document.getElementById("image-lightbox-img");
+  if(!lightbox || !img) return;
+  img.src=src;
+  img.alt=alt || "";
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden","false");
+}
+function closeImageLightbox(){
+  const lightbox=document.getElementById("image-lightbox");
+  const img=document.getElementById("image-lightbox-img");
+  if(!lightbox) return;
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden","true");
+  if(img) img.src="";
 }
 
 function openModal(id){
@@ -599,7 +617,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll(".lang").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
   document.querySelector(".modal-close").addEventListener("click",closeModal);
   document.querySelector(".modal-backdrop").addEventListener("click",closeModal);
-  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+  document.querySelector(".image-lightbox-close").addEventListener("click",closeImageLightbox);\n  document.getElementById("image-lightbox").addEventListener("click",e=>{if(e.target.id==="image-lightbox" || e.target.id==="image-lightbox-img")closeImageLightbox();});\n  document.addEventListener("keydown",e=>{if(e.key==="Escape"){const lightbox=document.getElementById("image-lightbox");if(lightbox?.classList.contains("open"))closeImageLightbox();else closeModal()}});
   const toggle=document.querySelector(".menu-toggle"),nav=document.querySelector(".main-nav");
   toggle.addEventListener("click",()=>{const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",open)});
   nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
