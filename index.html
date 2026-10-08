@@ -473,7 +473,7 @@ function card(c){
 
 function renderFeatured(){
   const grid=document.getElementById("featured-grid");
-  grid.innerHTML=comics.filter(c=>c.new).slice(0,4).map(card).join("");
+  grid.innerHTML=[...comics].sort((a,b)=>Number(b.id)-Number(a.id)).slice(0,4).map(card).join("");
   bindCards();
 }
 
