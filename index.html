@@ -112,6 +112,17 @@ footer{background:#050608;color:#777;padding:26px 0}.footer-inner{display:flex;a
 .contact-button.email .platform-logo img{width:20px;height:20px}
 @media(max-width:600px){.category-logo{max-width:160px;max-height:62px}.category-logo-dc{max-width:70px;max-height:70px}}
 
+
+<style>
+.modal-gallery-wrap{width:100%;min-width:0}
+.modal-gallery{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-height:520px}
+.gallery-frame{flex:1;display:flex;align-items:center;justify-content:center;min-width:0;height:520px}
+.gallery-frame img{display:block;max-width:100%;max-height:520px;width:auto;height:auto;object-fit:contain;border-radius:4px}
+.gallery-nav{width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;background:#111;color:#fff;font-size:34px;line-height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gallery-nav:disabled{opacity:.25;cursor:default}
+.gallery-counter{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
+@media(max-width:800px){.modal-gallery{min-height:380px}.gallery-frame{height:380px}.gallery-frame img{max-height:380px}.gallery-nav{width:38px;height:38px;flex-basis:38px;font-size:28px}}
+</style>
 </style>
 </head>
 <body>
@@ -291,16 +302,14 @@ footer{background:#050608;color:#777;padding:26px 0}.footer-inner{display:flex;a
   </div>
   <script>
 const comics = [
-  {id:1,lot:"0001",title:"Spider-Man #1",number:"#1",publisher:"Marvel Comics",year:"1990",edition:"Silver Edition",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",image:"images/spiderman-1-silver-98.webp",description:{it:"Spider-Man #1 del 1990, Silver Edition, con storia, copertina e arte di Todd McFarlane. Esemplare graduato CGC 9.8.",en:"Spider-Man #1 from 1990, Silver Edition, featuring story, cover and art by Todd McFarlane. CGC 9.8 graded copy.",es:"Spider-Man #1 de 1990, Silver Edition, con historia, portada y arte de Todd McFarlane. Ejemplar graduado CGC 9.8.",fr:"Spider-Man #1 de 1990, Silver Edition, avec histoire, couverture et dessins de Todd McFarlane. Exemplaire gradé CGC 9.8.",de:"Spider-Man #1 aus dem Jahr 1990, Silver Edition, mit Story, Cover und Artwork von Todd McFarlane. CGC 9.8 bewertetes Exemplar."},new:true,color:"red"},
-  {id:2,lot:"0002",title:"Deadpool vs. Carnage #1",number:"#1",publisher:"Marvel Comics",year:"2014",edition:"Direct Edition",type:"signed",category:"marvel",grade:"9.4",grader:"CGC Signature Series",era:"modern",image:"images/deadpool-vs-carnage-1-signed-94.jpg",description:{it:"Deadpool vs. Carnage #1 del 2014, Direct Edition, firmato da Glenn Fabry il 19/09/2023. Storia di Cullen Bunn, matite di Salva Espin e copertina di Glenn Fabry.",en:"Deadpool vs. Carnage #1 from 2014, Direct Edition, signed by Glenn Fabry on 19/09/2023. Story by Cullen Bunn, pencils by Salva Espin and cover by Glenn Fabry.",es:"Deadpool vs. Carnage #1 de 2014, Direct Edition, firmado por Glenn Fabry el 19/09/2023. Historia de Cullen Bunn, lápices de Salva Espin y portada de Glenn Fabry.",fr:"Deadpool vs. Carnage #1 de 2014, Direct Edition, signé par Glenn Fabry le 19/09/2023. Scénario de Cullen Bunn, dessins de Salva Espin et couverture de Glenn Fabry.",de:"Deadpool vs. Carnage #1 aus dem Jahr 2014, Direct Edition, am 19.09.2023 von Glenn Fabry signiert. Story von Cullen Bunn, Zeichnungen von Salva Espin und Cover von Glenn Fabry."},new:true,color:"red"},
-  {id:3,lot:"0003",title:"Simpsons Comics #1",number:"#1",publisher:"Bongo Comics Group",year:"1993",edition:"First Issue Collector’s Item",type:"signed",category:"other",grade:"9.6",grader:"CGC x JSA Authentic Autograph",era:"vintage",image:"images/simpsons-comics-1-signed-96.jpg",description:{it:"Prima uscita di Simpsons Comics del 1993, Bongo Comics Group. Esemplare CGC 9.6 con autografo autenticato da JSA e firma di Bill Morrison. Storia e arte indicate sulla slab: Steve e Cindy Vance, Sondra R. & Tim Bavington, Bill Morrison.",en:"First issue of Simpsons Comics from 1993, published by Bongo Comics Group. CGC 9.6 copy with a JSA-authenticated autograph signed by Bill Morrison. Story and art credits shown on the slab include Steve and Cindy Vance, Sondra R. & Tim Bavington, and Bill Morrison.",es:"Primera edición de Simpsons Comics de 1993, publicada por Bongo Comics Group. Ejemplar CGC 9.6 con autógrafo autenticado por JSA y firmado por Bill Morrison. Los créditos de historia y arte indicados en la slab incluyen a Steve y Cindy Vance, Sondra R. y Tim Bavington, y Bill Morrison.",fr:"Premier numéro de Simpsons Comics de 1993, publié par Bongo Comics Group. Exemplaire CGC 9.6 avec autographe authentifié par JSA et signé par Bill Morrison. Les crédits de scénario et d’art indiqués sur la slab incluent Steve et Cindy Vance, Sondra R. & Tim Bavington et Bill Morrison.",de:"Erstausgabe von Simpsons Comics aus dem Jahr 1993, veröffentlicht von Bongo Comics Group. CGC 9.6 Exemplar mit von JSA authentifiziertem Autogramm von Bill Morrison. Die auf der Slab genannten Story- und Artwork-Credits umfassen Steve und Cindy Vance, Sondra R. & Tim Bavington sowie Bill Morrison."},new:true,color:"yellow"},
-  {id:4,lot:"0004",title:"Batman",number:"—",publisher:"DC Comics",year:"—",edition:"Signed",type:"signed",category:"dc",grade:"—",grader:"—",era:"—",image:"images/batman-signed.jpg",description:{it:"Copia/autografo a tema Batman. La fotografia fornita mostra più firme sul fumetto, ma non rende visibili numero, anno, edizione o certificazione; questi dati potranno essere completati quando avremo una foto della slab o della testata.",en:"Batman-themed signed copy. The supplied photo shows multiple signatures on the comic, but the issue number, year, edition and certification are not visible; these details can be completed when a photo of the slab or cover is available.",es:"Ejemplar firmado relacionado con Batman. La fotografía proporcionada muestra varias firmas en el cómic, pero no permite ver el número, año, edición ni certificación; estos datos podrán completarse cuando tengamos una foto de la slab o de la portada.",fr:"Exemplaire signé sur le thème de Batman. La photo fournie montre plusieurs signatures sur la bande dessinée, mais le numéro, l’année, l’édition et la certification ne sont pas visibles ; ces informations pourront être complétées avec une photo de la slab ou de la couverture.",de:"Signiertes Batman-Exemplar. Das bereitgestellte Foto zeigt mehrere Unterschriften auf dem Comic, aber Nummer, Jahr, Ausgabe und Zertifizierung sind nicht erkennbar. Diese Angaben können ergänzt werden, sobald ein Foto der Slab oder des Covers vorliegt."},new:true,color:"blue"},
-  {id:5,lot:"0005",title:"Amazing Spider-Man #361",number:"#361",publisher:"Marvel",year:"1992",edition:"Regular",type:"regular",category:"marvel",grade:"9.6",grader:"CGC",era:"vintage",description:{it:"Amazing Spider-Man #361 del 1992. Esemplare graduato CGC 9.6.",en:"Amazing Spider-Man #361 from 1992. CGC 9.6 graded copy.",es:"Amazing Spider-Man #361 de 1992. Ejemplar graduado CGC 9.6.",fr:"Amazing Spider-Man #361 de 1992. Exemplaire gradé CGC 9.6.",de:"Amazing Spider-Man #361 aus dem Jahr 1992. CGC 9.6 bewertetes Exemplar."},new:false,color:"red"},
-  {id:6,lot:"0006",title:"Batman #1",number:"#1",publisher:"DC",year:"2016",edition:"Signed",type:"signed",category:"dc",grade:"9.8",grader:"CGC",era:"modern",description:{it:"Batman #1 del 2016, edizione firmata. Esemplare graduato CGC 9.8.",en:"Batman #1 from 2016, signed edition. CGC 9.8 graded copy.",es:"Batman #1 de 2016, edición firmada. Ejemplar graduado CGC 9.8.",fr:"Batman #1 de 2016, édition signée. Exemplaire gradé CGC 9.8.",de:"Batman #1 aus dem Jahr 2016, signierte Ausgabe. CGC 9.8 bewertetes Exemplar."},new:false,color:"blue"},
-  {id:7,lot:"0007",title:"The Walking Dead #1",number:"#1",publisher:"Image",year:"2003",edition:"Regular",type:"regular",category:"image",grade:"9.6",grader:"CGC",era:"modern",description:{it:"The Walking Dead #1 del 2003, Image Comics. Esemplare graduato CGC 9.6.",en:"The Walking Dead #1 from 2003, Image Comics. CGC 9.6 graded copy.",es:"The Walking Dead #1 de 2003, Image Comics. Ejemplar graduado CGC 9.6.",fr:"The Walking Dead #1 de 2003, Image Comics. Exemplaire gradé CGC 9.6.",de:"The Walking Dead #1 aus dem Jahr 2003, Image Comics. CGC 9.6 bewertetes Exemplar."},new:false,color:"dark"},
-  {id:8,lot:"0008",title:"X-Men #1",number:"#1",publisher:"Marvel",year:"1991",edition:"Signed",type:"signed",category:"marvel",grade:"9.6",grader:"CGC",era:"vintage",description:{it:"X-Men #1 del 1991, edizione firmata. Esemplare graduato CGC 9.6.",en:"X-Men #1 from 1991, signed edition. CGC 9.6 graded copy.",es:"X-Men #1 de 1991, edición firmada. Ejemplar graduado CGC 9.6.",fr:"X-Men #1 de 1991, édition signée. Exemplaire gradé CGC 9.6.",de:"X-Men #1 aus dem Jahr 1991, signierte Ausgabe. CGC 9.6 bewertetes Exemplar."},new:false,color:"red"},
-  {id:9,lot:"0009",title:"Wolverine #41",number:"#41",publisher:"Marvel Comics",year:"2024",edition:"Capullo 'Virgin' Edition",type:"signed",category:"marvel",grade:"9.8",grader:"CGC Signature Series",era:"modern",image:"images/wolverine-41-signed-98.jpg",description:{it:"Wolverine #41, Marvel Comics. Esemplare CGC Signature Series 9.8, Capullo 'Virgin' Edition, firmato da Benjamin Percy e Greg Capullo.",en:"Wolverine #41, Marvel Comics. CGC Signature Series 9.8, Capullo 'Virgin' Edition, signed by Benjamin Percy and Greg Capullo.",es:"Wolverine #41, Marvel Comics. Ejemplar CGC Signature Series 9.8, Capullo 'Virgin' Edition, firmado por Benjamin Percy y Greg Capullo.",fr:"Wolverine #41, Marvel Comics. Exemplaire CGC Signature Series 9.8, Capullo 'Virgin' Edition, signé par Benjamin Percy et Greg Capullo.",de:"Wolverine #41, Marvel Comics. CGC Signature Series 9.8, Capullo 'Virgin' Edition, signiert von Benjamin Percy und Greg Capullo."},new:true,color:"red"},
-  {id:10,lot:"0010",title:"Doom 2099 #1",number:"#1",publisher:"Marvel Comics",year:"1993",edition:"Foil Cover",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",image:"images/doom-2099-1-98.jpg",description:{it:"Doom 2099 #1 del 1993, Marvel Comics, con Foil Cover. Esemplare graduato CGC 9.8.",en:"Doom 2099 #1 from 1993, Marvel Comics, with Foil Cover. CGC 9.8 graded copy.",es:"Doom 2099 #1 de 1993, Marvel Comics, con Foil Cover. Ejemplar graduado CGC 9.8.",fr:"Doom 2099 #1 de 1993, Marvel Comics, avec Foil Cover. Exemplaire gradé CGC 9.8.",de:"Doom 2099 #1 aus dem Jahr 1993, Marvel Comics, mit Foil Cover. CGC 9.8 bewertetes Exemplar."},new:true,color:"red"}
+  {id:1,lot:"0001",title:"Spider-Man #13",number:"#13",publisher:"Marvel Comics",year:"1991",edition:"Regular",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/spiderman-13-front.png","images/spiderman-13-back.png"],description:{it:"Spider-Man #13, esemplare CGC 9.8. La scheda mostra la copertina e il retro originale del comic.",en:"Spider-Man #13, CGC 9.8 graded copy. The profile shows the original front and back of the comic.",es:"Spider-Man #13, ejemplar graduado CGC 9.8. La ficha muestra la portada y el reverso original del cómic.",fr:"Spider-Man #13, exemplaire gradé CGC 9.8. La fiche montre la couverture et le dos originaux de la bande dessinée.",de:"Spider-Man #13, CGC 9.8 bewertetes Exemplar. Das Profil zeigt Vorder- und Rückseite des Comics."},new:true,color:"red"},
+  {id:2,lot:"0002",title:"Spider-Man 2099 #1",number:"#1",publisher:"Marvel Comics",year:"1992",edition:"Regular",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/spiderman-2099-front.png","images/spiderman-2099-back.png"],description:{it:"Spider-Man 2099 #1, esemplare CGC 9.8. La scheda include fronte e retro della slab.",en:"Spider-Man 2099 #1, CGC 9.8 graded copy. The profile includes both sides of the slab.",es:"Spider-Man 2099 #1, ejemplar graduado CGC 9.8. La ficha incluye ambos lados de la slab.",fr:"Spider-Man 2099 #1, exemplaire gradé CGC 9.8. La fiche comprend les deux côtés de la slab.",de:"Spider-Man 2099 #1, CGC 9.8 bewertetes Exemplar. Das Profil enthält beide Seiten der Slab."},new:true,color:"red"},
+  {id:3,lot:"0003",title:"Venom: Lethal Protector #1",number:"#1",publisher:"Marvel Comics",year:"1993",edition:"Regular",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/venom-front.png","images/venom-back.png"],description:{it:"Venom: Lethal Protector #1, esemplare CGC 9.8. Sono disponibili fronte e retro della slab.",en:"Venom: Lethal Protector #1, CGC 9.8 graded copy. Both sides of the slab are available.",es:"Venom: Lethal Protector #1, ejemplar graduado CGC 9.8. Están disponibles ambos lados de la slab.",fr:"Venom: Lethal Protector #1, exemplaire gradé CGC 9.8. Les deux côtés de la slab sont disponibles.",de:"Venom: Lethal Protector #1, CGC 9.8 bewertetes Exemplar. Beide Seiten der Slab sind verfügbar."},new:true,color:"red"},
+  {id:4,lot:"0004",title:"X-Men #1 — Variante A",number:"#1",publisher:"Marvel Comics",year:"1991",edition:"Variante A",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/x-men-1-a-front.png","images/x-men-1-a-back.png"],description:{it:"X-Men #1, variante A, esemplare CGC 9.8. La scheda include fronte e retro.",en:"X-Men #1, variant A, CGC 9.8 graded copy. The profile includes front and back.",es:"X-Men #1, variante A, ejemplar graduado CGC 9.8. La ficha incluye portada y reverso.",fr:"X-Men #1, variante A, exemplaire gradé CGC 9.8. La fiche comprend recto et verso.",de:"X-Men #1, Variante A, CGC 9.8 bewertetes Exemplar. Das Profil enthält Vorder- und Rückseite."},new:true,color:"red"},
+  {id:5,lot:"0005",title:"X-Men #1 — Variante B",number:"#1",publisher:"Marvel Comics",year:"1991",edition:"Variante B",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/x-men-1-b-front.png","images/x-men-1-b-back.png"],description:{it:"X-Men #1, variante B, esemplare CGC 9.8. La scheda include fronte e retro.",en:"X-Men #1, variant B, CGC 9.8 graded copy. The profile includes front and back.",es:"X-Men #1, variante B, ejemplar graduado CGC 9.8. La ficha incluye portada y reverso.",fr:"X-Men #1, variante B, exemplaire gradé CGC 9.8. La fiche comprend recto et verso.",de:"X-Men #1, Variante B, CGC 9.8 bewertetes Exemplar. Das Profil enthält Vorder- und Rückseite."},new:true,color:"red"},
+  {id:6,lot:"0006",title:"X-Men #1 — Variante C",number:"#1",publisher:"Marvel Comics",year:"1991",edition:"Variante C",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/x-men-1-c-front.png","images/x-men-1-c-back.png"],description:{it:"X-Men #1, variante C, esemplare CGC 9.8. La scheda include fronte e retro.",en:"X-Men #1, variant C, CGC 9.8 graded copy. The profile includes front and back.",es:"X-Men #1, variante C, ejemplar graduado CGC 9.8. La ficha incluye portada y reverso.",fr:"X-Men #1, variante C, exemplaire gradé CGC 9.8. La fiche comprend recto et verso.",de:"X-Men #1, Variante C, CGC 9.8 bewertetes Exemplar. Das Profil enthält Vorder- und Rückseite."},new:true,color:"red"},
+  {id:7,lot:"0007",title:"X-Men #1 — Variante D",number:"#1",publisher:"Marvel Comics",year:"1991",edition:"Variante D",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/x-men-1-d-front.png","images/x-men-1-d-back.png"],description:{it:"X-Men #1, variante D, esemplare CGC 9.8. La scheda include fronte e retro.",en:"X-Men #1, variant D, CGC 9.8 graded copy. The profile includes front and back.",es:"X-Men #1, variante D, ejemplar graduado CGC 9.8. La ficha incluye portada y reverso.",fr:"X-Men #1, variante D, exemplaire gradé CGC 9.8. La fiche comprend recto et verso.",de:"X-Men #1, Variante D, CGC 9.8 bewertetes Exemplar. Das Profil enthält Vorder- und Rückseite."},new:true,color:"red"},
+  {id:8,lot:"0008",title:"X-Men #1 — Speciale",number:"#1",publisher:"Marvel Comics",year:"1991",edition:"Speciale",type:"regular",category:"marvel",grade:"9.8",grader:"CGC",era:"vintage",images:["images/x-men-1-speciale-front.png","images/x-men-1-speciale-back.png"],description:{it:"X-Men #1 — Speciale, esemplare CGC 9.8. La scheda include fronte e retro.",en:"X-Men #1 — Special, CGC 9.8 graded copy. The profile includes front and back.",es:"X-Men #1 — Especial, ejemplar graduado CGC 9.8. La ficha incluye portada y reverso.",fr:"X-Men #1 — Spécial, exemplaire gradé CGC 9.8. La fiche comprend recto et verso.",de:"X-Men #1 — Spezial, CGC 9.8 bewertetes Exemplar. Das Profil enthält Vorder- und Rückseite."},new:true,color:"red"}
 ];
 
 const translations = {
@@ -430,8 +439,9 @@ function card(c){
     `<span class="comic-badge type-badge">${c.type === "signed" ? t("signed").toUpperCase() : t("regular").toUpperCase()}</span>`,
     `<span class="comic-badge grade-badge">${c.grade}</span>`
   ].join("");
+  const cover = c.images?.[0] ? `<img src="${c.images[0]}" alt="${c.title}">` : placeholder(c);
   return `<article class="comic-card-item" data-id="${c.id}">
-    <div class="cover">${c.image ? `<img src="${c.image}" alt="${c.title}">` : placeholder(c)}</div>
+    <div class="cover">${cover}</div>
     <div class="comic-meta">
       <div class="comic-badges">${badges}</div>
       <h3>${c.title}</h3>
@@ -468,12 +478,35 @@ function bindCards(){
   });
 }
 
+let modalImageIndex=0;
+let modalComic=null;
+
+function renderModalGallery(){
+  if(!modalComic) return;
+  const images=modalComic.images || [];
+  const src=images[modalImageIndex] || "";
+  const gallery=document.getElementById("modal-gallery");
+  if(gallery){
+    gallery.innerHTML=`
+      <button class="gallery-nav gallery-prev" aria-label="Foto precedente" ${modalImageIndex===0?"disabled":""}>‹</button>
+      <div class="gallery-frame"><img src="${src}" alt="${modalComic.title}"></div>
+      <button class="gallery-nav gallery-next" aria-label="Foto successiva" ${modalImageIndex===images.length-1?"disabled":""}>›</button>
+      <div class="gallery-counter">${modalImageIndex+1} / ${images.length}</div>
+    `;
+    gallery.querySelector(".gallery-prev")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex>0){modalImageIndex--;renderModalGallery();}});
+    gallery.querySelector(".gallery-next")?.addEventListener("click",e=>{e.stopPropagation();if(modalImageIndex<images.length-1){modalImageIndex++;renderModalGallery();}});
+  }
+}
+
 function openModal(id){
   const c=comics.find(x=>x.id===id);
+  if(!c) return;
+  modalComic=c;
+  modalImageIndex=0;
   const modal=document.getElementById("comic-modal");
   const content=document.getElementById("modal-content");
   content.innerHTML=`<div class="modal-product">
-    <div class="cover">${c.image ? `<img src="${c.image}" alt="${c.title}">` : placeholder(c)}</div>
+    <div class="modal-gallery-wrap"><div id="modal-gallery" class="modal-gallery"></div></div>
     <div class="modal-details">
       <div class="section-label">${c.category.toUpperCase()} · ${c.type.toUpperCase()}</div>
       <h2>${c.title}</h2>
@@ -490,6 +523,7 @@ function openModal(id){
       <a class="request-btn" href="https://wa.me/393385243303?text=${encodeURIComponent("Ciao, sono interessato al fumetto: "+c.title+" (Lotto "+c.lot+")")}" target="_blank" rel="noopener">${t("request")} ↗</a>
     </div>
   </div>`;
+  renderModalGallery();
   modal.classList.add("open"); modal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
 }
 function closeModal(){
