@@ -347,7 +347,7 @@ const translations = {
     about_text2:"Il sito non è uno shop: per ogni fumetto trovi una scheda completa e un pulsante per richiedere informazioni.",
     section_contact:"CONTATTI",contact_title:"Hai trovato il fumetto che cercavi?",contact_text:"Scrivici. Ti risponderemo per disponibilità e informazioni.",
     request:"RICHIEDI INFORMAZIONI",description:"Descrizione",details:"Dettagli",category:"Categoria",type:"Tipo",
-    number:"Numero",lot:"Lotto",publisher:"Editore",year:"Anno",edition:"Edizione",grade:"Grading",close:"Chiudi"
+    number:"Numero",lot:"Lotto",publisher:"Editore",year:"Anno",edition:"Edizione",grade:"Grading",pageQuality:"Qualità delle pagine",customLabel:"Etichetta personalizzata CGC",toVerify:"Da verificare",yes:"Sì",no:"No",close:"Chiudi"
   },
   en:{
     nav_comics:"Comics",nav_categories:"Categories",nav_about:"About",nav_contact:"Contact",
@@ -364,7 +364,7 @@ const translations = {
     about_text2:"This is not an online shop: every comic has a complete profile and a button to request information.",
     section_contact:"CONTACT",contact_title:"Found the comic you were looking for?",contact_text:"Write to us for availability and information.",
     request:"REQUEST INFORMATION",description:"Description",details:"Details",category:"Category",type:"Type",
-    number:"Number",lot:"Lot",publisher:"Publisher",year:"Year",edition:"Edition",grade:"Grading",close:"Close"
+    number:"Number",lot:"Lot",publisher:"Publisher",year:"Year",edition:"Edition",grade:"Grading",pageQuality:"Page quality",customLabel:"CGC custom label",toVerify:"To verify",yes:"Yes",no:"No",close:"Close"
   },
   es:{
     nav_comics:"Cómics",nav_categories:"Categorías",nav_about:"Quiénes somos",nav_contact:"Contacto",
@@ -381,7 +381,7 @@ const translations = {
     about_text2:"Este sitio no es una tienda online: cada cómic tiene una ficha completa y un botón para solicitar información.",
     section_contact:"CONTACTO",contact_title:"¿Has encontrado el cómic que buscabas?",contact_text:"Escríbenos para consultar disponibilidad e información.",
     request:"SOLICITAR INFORMACIÓN",description:"Descripción",details:"Detalles",category:"Categoría",type:"Tipo",
-    number:"Número",lot:"Lote",publisher:"Editorial",year:"Año",edition:"Edición",grade:"Grading",close:"Cerrar"
+    number:"Número",lot:"Lote",publisher:"Editorial",year:"Año",edition:"Edición",grade:"Grading",pageQuality:"Calidad de las páginas",customLabel:"Etiqueta personalizada CGC",toVerify:"Por verificar",yes:"Sí",no:"No",close:"Cerrar"
   },
   fr:{
     nav_comics:"Bandes dessinées",nav_categories:"Catégories",nav_about:"À propos",nav_contact:"Contact",
@@ -398,7 +398,7 @@ const translations = {
     about_text2:"Ce site n'est pas une boutique en ligne : chaque BD possède une fiche complète et un bouton pour demander des informations.",
     section_contact:"CONTACT",contact_title:"Vous avez trouvé la BD que vous cherchiez ?",contact_text:"Écrivez-nous pour connaître la disponibilité et obtenir des informations.",
     request:"DEMANDER DES INFORMATIONS",description:"Description",details:"Détails",category:"Catégorie",type:"Type",
-    number:"Numéro",lot:"Lot",publisher:"Éditeur",year:"Année",edition:"Édition",grade:"Grading",close:"Fermer"
+    number:"Numéro",lot:"Lot",publisher:"Éditeur",year:"Année",edition:"Édition",grade:"Grading",pageQuality:"Qualité des pages",customLabel:"Étiquette personnalisée CGC",toVerify:"À vérifier",yes:"Oui",no:"Non",close:"Fermer"
   },
   de:{
     nav_comics:"Comics",nav_categories:"Kategorien",nav_about:"Über uns",nav_contact:"Kontakt",
@@ -415,7 +415,7 @@ const translations = {
     about_text2:"Dies ist kein Online-Shop: Jeder Comic besitzt eine vollständige Karte und eine Schaltfläche für Informationsanfragen.",
     section_contact:"KONTAKT",contact_title:"Hast du den gesuchten Comic gefunden?",contact_text:"Schreib uns für Verfügbarkeit und weitere Informationen.",
     request:"INFORMATIONEN ANFRAGEN",description:"Beschreibung",details:"Details",category:"Kategorie",type:"Typ",
-    number:"Nummer",lot:"Los",publisher:"Verlag",year:"Jahr",edition:"Ausgabe",grade:"Grading",close:"Schließen"
+    number:"Nummer",lot:"Los",publisher:"Verlag",year:"Jahr",edition:"Ausgabe",grade:"Grading",pageQuality:"Seitenqualität",customLabel:"Individuelles CGC-Label",toVerify:"Zu prüfen",yes:"Ja",no:"Nein",close:"Schließen"
   }
 };
 
@@ -555,7 +555,7 @@ function openModal(id){
         <div class="detail"><b>${t("publisher")}</b><span>${c.publisher}</span></div>
         <div class="detail"><b>${t("year")}</b><span>${c.year}</span></div>
         <div class="detail"><b>${t("edition")}</b><span>${c.edition}</span></div>
-        <div class="detail"><b>${t("grade")}</b><span>${c.grade}</span></div>
+        <div class="detail"><b>${t("grade")}</b><span>${c.grade}</span></div>\n        <div class="detail"><b>${t("pageQuality")}</b><span>${c.pageQuality || t("toVerify")}</span></div>\n        <div class="detail"><b>${t("customLabel")}</b><span>${c.customLabel || t("toVerify")}</span></div>
       </div>
       <h4>${t("description")}</h4>
       <p>${getDescription(c)}</p>
