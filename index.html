@@ -546,7 +546,8 @@ function renderCatalog(){
     const typeOK=activeType==="all" || c.type===activeType;
     const eraOK=!activeEra || c.era===activeEra;
     const qOK=!q || [c.title,c.publisher,c.year,c.edition,c.grade].join(" ").toLowerCase().includes(q);
-    return categoryOK && typeOK && eraOK && qOK;
+    // When a search term is present, search the entire catalog and temporarily ignore active filters.
+    return q ? qOK : categoryOK && typeOK && eraOK;
   });
   const grid=document.getElementById("catalog-grid");
   list.sort((a,b)=>a.title.localeCompare(b.title,"it",{sensitivity:"base",numeric:true}));
